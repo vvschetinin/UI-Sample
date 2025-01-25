@@ -6,7 +6,6 @@
 	width: 100%;
 	padding: 0 20px;
 	@include index.minMedia(550px) {
-		// Добавляем px для ясности
 		padding: 0 30px;
 	}
 	@include index.minMedia(800px) {
@@ -47,6 +46,11 @@ $columns: (
 @each $col, $width in $columns {
 	.col-#{$col} {
 		width: $width;
+
+		// Добавляем медиа-запрос для экранов меньше 550px
+		@media (max-width: 549px) {
+			width: 100%;
+		}
 	}
 	@each $bp, $val in index.$grid-breakpoints {
 		@if $bp != "xs" {
@@ -59,10 +63,10 @@ $columns: (
 	}
 }
 
-[class*=" col-"],  // Добавляем пробел для корректного выбора
+[class*=" col-"],
 [class^="col-"] {
-	box-sizing: border-box; // Важно для правильного расчета ширины с padding
-	padding: 0 20px; //  Устанавливаем padding здесь
+	box-sizing: border-box;
+	padding: 0 20px;
 	min-height: 1px;
 	position: relative;
 }
