@@ -1,0 +1,68 @@
+// _mygrid.scss
+
+@use "@scss/abstract/index";
+
+.container {
+	width: 100%;
+	padding: 0 20px;
+	@include index.minMedia(550px) {
+		// Добавляем px для ясности
+		padding: 0 30px;
+	}
+	@include index.minMedia(800px) {
+		padding: 0 50px;
+	}
+	@include index.minMedia(1400px) {
+		padding: 0 150px;
+	}
+	@include index.minMedia(1800px) {
+		max-width: 1920px; // Ограничиваем максимальную ширину контейнера
+		padding: 0 200px;
+	}
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -20px; // Отрицательный margin для компенсации padding у колонок
+	@include index.minMedia(800px) {
+		margin-left: -20px; // Для больших экранов
+	}
+}
+
+// Более эффективный способ генерации стилей для колонок
+$columns: (
+	"20": 20%,
+	"25": 25%,
+	"33": calc(100% / 3),
+	"40": 40%,
+	"50": 50%,
+	"60": 60%,
+	"66": calc((100% / 3) * 2),
+	"75": 75%,
+	"80": 80%,
+	"100": 100%,
+);
+
+@each $col, $width in $columns {
+	.col-#{$col} {
+		width: $width;
+	}
+	@each $bp, $val in index.$grid-breakpoints {
+		@if $bp != "xs" {
+			.col-#{$col}--#{$bp} {
+				@include index.minMedia($val) {
+					width: $width;
+				}
+			}
+		}
+	}
+}
+
+[class*=" col-"],  // Добавляем пробел для корректного выбора
+[class^="col-"] {
+	box-sizing: border-box; // Важно для правильного расчета ширины с padding
+	padding: 0 20px; //  Устанавливаем padding здесь
+	min-height: 1px;
+	position: relative;
+}

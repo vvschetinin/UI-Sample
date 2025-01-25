@@ -1,0 +1,58 @@
+// _variables.scss
+
+/* Font stacks */
+$text-font-stack: "Roboto", sans-serif !default;
+$code-font-stack: "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+	"Monaco", monospace !default;
+
+/* Font settings */
+$base-font-size: 16px !default;
+$base-line-height: 1.45 !default;
+$font-weight: (
+	thin: 100,
+	light: 300,
+	regular: 400,
+	medium: 500,
+	semibold: 600,
+	bold: 700,
+	extrabold: 800,
+) !default;
+
+/* Colors */
+$brand: #df4f4f !default;
+
+$text-color: (
+	white: #fff,
+	primary: #333,
+	green: #18e591,
+	greydark: #666,
+	dark: #111,
+	black: #000,
+	accent: $brand,
+	footer: #6c769a,
+	header: #76001d,
+	error: #ff0000,
+) !default;
+
+$theme-color: (
+	body: #fff,
+	primary: #fff,
+	gray: #e5e5e5,
+	dark: #1d1d1d,
+	black: #1c1c1c,
+	red: #ff0000,
+	brand: $brand,
+	footer: #ffe117,
+	head: #ffe79e,
+) !default;
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 550px,
+	md: 800px,
+	lg: 1100px,
+	xl: 1400px,
+	xxl: 1800px,
+) !default;
+
+$grid-columns: 10 !default;

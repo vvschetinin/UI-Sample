@@ -1,0 +1,44 @@
+// _functions.scss
+
+@use "sass:map";
+@use "variables" as vars;
+
+/// Get a color from the $theme-color map
+/// @param {String} $key - The key of the desired color
+/// @return {Color} - The color value
+@function theme_color($key: "primary") {
+	@if map.has-key(vars.$theme-color, $key) {
+		@return map.get(vars.$theme-color, $key);
+	} @else {
+		@error "Key `#{$key}` not found in $theme-color map.";
+	}
+}
+
+/// Get a text color from the $text-color map
+/// @param {String} $key - The key of the desired text color
+/// @return {Color} - The text color value
+@function theme_text_color($key: "primary") {
+	@if map.has-key(vars.$text-color, $key) {
+		@return map.get(vars.$text-color, $key);
+	} @else {
+		@error "Key `#{$key}` not found in $text-color map.";
+	}
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: "") {
+	@if str-index($string, $search) {
+		@return str-slice($string, 1, str-index($string, $search) - 1) + $replace +
+			str-replace(
+				str-slice($string, str-index($string, $search) + str-length($search)),
+				$search,
+				$replace
+			);
+	}
+	@return $string;
+}
