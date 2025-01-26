@@ -1,6 +1,9 @@
 // _mygrid.scss
 
+// Устанавливаем количество колонок в 10
 @use "@scss/abstract/index";
+
+$grid-columns: 10 !default;
 
 .container {
 	width: 100%;
